@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOTOVLT - Motorcycle Parts & Custom</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #0c0c0c;
+            color: #fff;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10,10,10,0.96);
+            border-bottom: 1px solid #292929;
+        }
+
+        nav {
+            max-width: 1300px;
+            margin: auto;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #d9d9d9;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        .cart {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #cartCount {
+            background: white;
+            color: black;
+            padding: 3px 7px;
+            border-radius: 20px;
+            font-size: 11px;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,0.95), rgba(0,0,0,0.4)),
+                url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1800&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 1300px;
+            width: 100%;
+            margin: auto;
+            padding: 40px 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 7vw, 90px);
+            line-height: 0.9;
+            max-width: 750px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            margin-top: 25px;
+            max-width: 550px;
+            color: #bbb;
+            line-height: 1.7;
+        }
+
+        .hero button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            max-width: 1300px;
+            margin: auto;
+            padding: 70px 25px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+        /* ================= CATEGORY ================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .category {
+            padding: 25px 15px;
+            background: #151515;
+            border: 1px solid #252525;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .category:hover {
+            background: #222;
+            transform: translateY(-4px);
+        }
+
+        .category strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .category small {
+            color: #777;
+        }
+
+        /* ================= FILTER ================= */
+
+        .shop-tools {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        input,
+        select {
+            background: #151515;
+            border: 1px solid #333;
+            color: white;
+            padding: 13px;
+            outline: none;
+        }
+
+        input {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        /* ================= PRODUCT ================= */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product {
+            background: #151515;
+            border: 1px solid #252525;
+            overflow: hidden;
+            transition: .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            border-color: #555;
+        }
+
+        .product-image {
+            height: 230px;
+            background: #202020;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .3s;
+        }
+
+        .product:hover img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .brand {
+            font-size: 11px;
+            color: #777;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product h3 {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        .product-category {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .product button {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ================= BRANDS ================= */
+
+        .brands {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .brand-box {
+            background: #151515;
+            border: 1px solid #282828;
+            min-height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: #bbb;
+        }
+
+        /* ================= BANNER ================= */
+
+        .banner {
+            padding: 70px 40px;
+            background: #181818;
+            border: 1px solid #292929;
+            text-align: center;
+        }
+
+        .banner h2 {
+            font-size: 45px;
+            text-transform: uppercase;
+        }
+
+        .banner p {
+            color: #888;
+            margin: 15px auto;
+            max-width: 600px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            border-top: 1px solid #292929;
+            padding: 50px 25px;
+            color: #777;
+        }
+
+        .footer-inner {
+            max-width: 1300px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 10px;
+        }
+
+        /* ================= CART ================= */
+
+        .cart-panel {
+            position: fixed;
+            right: -420px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: #111;
+            z-index: 200;
+            padding: 25px;
+            border-left: 1px solid #333;
+            transition: .3s;
+        }
+
+        .cart-panel.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .close-cart {
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        #cartItems {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #292929;
+        }
+
+        .cart-item h4 {
+            margin-bottom: 5px;
+        }
+
+        .cart-total {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .checkout {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            background: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 1000px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .brands {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media(max-width: 700px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .brands {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-panel {
+                width: 100%;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+    <nav>
+        <div class="logo">
+            MOTO<span>VLT</span>
+        </div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#brands">Brands</a></li>
+        </ul>
+
+        <div class="cart" onclick="toggleCart()">
+            🛒 Cart <span id="cartCount">0</span>
+        </div>
+    </nav>
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            Build Your<br>
+            Own Machine.
+        </h1>
+
+        <p>
+            Motorcycle parts, performance upgrades and custom
+            components for riders who build their machines their own way.
+        </p>
+
+        <button onclick="document.getElementById('shop').scrollIntoView()">
+            SHOP PARTS
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CATEGORY ================= -->
+
+<section class="section" id="categories">
+
+    <div class="section-title">
+        <div>
+            <p>SHOP BY</p>
+            <h2>Categories</h2>
+        </div>
+    </div>
+
+    <div class="categories">
+
+        <div class="category" onclick="filterCategory('Engine')">
+            <strong>ENGINE</strong>
+            <small>Performance & Engine Parts</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Exhaust')">
+            <strong>EXHAUST</strong>
+            <small>Exhaust & Muffler</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Suspension')">
+            <strong>SUSPENSION</strong>
+            <small>Shock & Fork</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Brake')">
+            <strong>BRAKE</strong>
+            <small>Disc & Brake System</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Wheels')">
+            <strong>WHEELS</strong>
+            <small>Rims & Tires</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Electrical')">
+            <strong>ELECTRICAL</strong>
+            <small>ECU, Battery & Lighting</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Body')">
+            <strong>BODY</strong>
+            <small>Fairing & Body Parts</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Drivetrain')">
+            <strong>DRIVETRAIN</strong>
+            <small>Chain & Sprocket</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Accessories')">
+            <strong>ACCESSORIES</strong>
+            <small>Custom Accessories</small>
+        </div>
+
+        <div class="category" onclick="filterCategory('Tools')">
+            <strong>TOOLS</strong>
+            <small>Workshop Equipment</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SHOP ================= -->
+
+<section class="section" id="shop">
+
+    <div class="section-title">
+
+        <div>
+            <p>MOTOVLT</p>
+            <h2>All Parts</h2>
+        </div>
+
+        <p id="productTotal"></p>
+
+    </div>
+
+    <div class="shop-tools">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search parts, brands..."
+            onkeyup="renderProducts()"
+        >
+
+        <select id="categoryFilter" onchange="renderProducts()">
+            <option value="All">All Categories</option>
+            <option value="Engine">Engine</option>
+            <option value="Exhaust">Exhaust</option>
+            <option value="Suspension">Suspension</option>
+            <option value="Brake">Brake</option>
+            <option value="Wheels">Wheels</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Body">Body</option>
+            <option value="Drivetrain">Drivetrain</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Tools">Tools</option>
+        </select>
+
+        <select id="brandFilter" onchange="renderProducts()">
+            <option value="All">All Brands</option>
+            <option value="Akrapovic">Akrapovic</option>
+            <option value="Brembo">Brembo</option>
+            <option value="Öhlins">Öhlins</option>
+            <option value="KTC">KTC</option>
+            <option value="RCB">RCB</option>
+            <option value="Kawahara">Kawahara</option>
+            <option value="SND">SND</option>
+            <option value="WR3">WR3</option>
+            <option value="YSS">YSS</option>
+            <option value="UMA Racing">UMA Racing</option>
+        </select>
+
+    </div>
+
+    <div class="products" id="productList"></div>
+
+</section>
+
+
+<!-- ================= BRANDS ================= -->
+
+<section class="section" id="brands">
+
+    <div class="section-title">
+
+        <div>
+            <p>OFFICIAL & AFTERMARKET</p>
+            <h2>Brands</h2>
+        </div>
+
+    </div>
+
+    <div class="brands">
+
+        <!-- INTERNATIONAL -->
+
+        <div class="brand-box">AKRAPOVIC</div>
+        <div class="brand-box">BREMBO</div>
+        <div class="brand-box">ÖHLINS</div>
+        <div class="brand-box">MOTOGADGET</div>
+        <div class="brand-box">RIZOMA</div>
+        <div class="brand-box">K&amp;N</div>
+
+        <!-- ASIA -->
+
+        <div class="brand-box">YSS</div>
+        <div class="brand-box">NITRON</div>
+        <div class="brand-box">UMA RACING</div>
+        <div class="brand-box">RCB</div>
+        <div class="brand-box">DAYTONA</div>
+        <div class="brand-box">GALESPEED</div>
+
+        <!-- INDONESIA -->
+
+        <div class="brand-box">KTC</div>
+        <div class="brand-box">KAWAHARA</div>
+        <div class="brand-box">WR3</div>
+        <div class="brand-box">SND</div>
+        <div class="brand-box">JVT</div>
+        <div class="brand-box">CHEMCO</div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BANNER ================= -->
+
+<section class="section">
+
+    <div class="banner">
+
+        <h2>Make It Yours.</h2>
+
+        <p>
+            Performance parts, custom components and workshop essentials
+            for your next build.
+        </p>
+
+        <button
+            onclick="document.getElementById('shop').scrollIntoView()"
+            style="padding:15px 30px;border:0;font-weight:bold;"
+        >
+            EXPLORE PARTS
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            <h3>MOTOVLT</h3>
+            <p>
+                Motorcycle parts and custom components
+                for street, racing and custom builds.
+            </p>
+        </div>
+
+        <div>
+            <h3>SHOP</h3>
+            <ul>
+                <li>Engine</li>
+                <li>Exhaust</li>
+                <li>Suspension</li>
+                <li>Brake</li>
+                <li>Wheels</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>INFO</h3>
+            <ul>
+                <li>About Us</li>
+                <li>Shipping</li>
+                <li>Warranty</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>CONTACT</h3>
+            <p>
+                Instagram<br>
+                WhatsApp<br>
+                Email
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= CART ================= -->
+
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+
+        <h2>YOUR CART</h2>
+
+        <span class="close-cart" onclick="toggleCart()">×</span>
+
+    </div>
+
+    <div id="cartItems">
+        <p style="color:#777;">Your cart is empty.</p>
+    </div>
+
+    <div class="cart-total">
+        Total: Rp <span id="cartTotal">0</span>
+    </div>
+
+    <button class="checkout" onclick="checkout()">
+        CHECKOUT
+    </button>
+
+</div>
+
+
+<script>
+
+/* ================= PRODUCT DATABASE ================= */
+
+const products = [
+
+    {
+        name: "Slip-On Exhaust GP Series",
+        brand: "Akrapovic",
+        category: "Exhaust",
+        price: 12500000,
+        image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Radial Brake Caliper",
+        brand: "Brembo",
+        category: "Brake",
+        price: 9800000,
+        image: "https://images.unsplash.com/photo-1558980394-0c7c0d6e5a15?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Rear Shock Racing",
+        brand: "Öhlins",
+        category: "Suspension",
+        price: 14500000,
+        image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Adjustable Rearset",
+        brand: "RCB",
+        category: "Accessories",
+        price: 1850000,
+        image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "High Performance Camshaft",
+        brand: "UMA Racing",
+        category: "Engine",
+        price: 1350000,
+        image: "https://images.unsplash.com/photo-1558980394-0c7c0d6e5a15?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Forged Racing Wheel",
+        brand: "Galespeed",
+        category: "Wheels",
+        price: 18500000,
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Adjustable Rear Shock",
+        brand: "YSS",
+        category: "Suspension",
+        price: 3200000,
+        image: "https://images.unsplash.com/photo-1558980664-10ea3f3c3c4a?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Titanium Racing Bolt Kit",
+        brand: "KTC",
+        category: "Accessories",
+        price: 850000,
+        image: "https://images.unsplash.com/photo-1558980394-0c7c0d6e5a15?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Racing Chain & Sprocket",
+        brand: "Kawahara",
+        category: "Drivetrain",
+        price: 1250000,
+        image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Performance ECU",
+        brand: "SND",
+        category: "Electrical",
+        price: 2750000,
+        image: "https://images.unsplash.com/photo-1558980664-10ea3f3c3c4a?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Air Filter Performance",
+        brand: "K&N",
+        category: "Engine",
+        price: 950000,
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "LED Headlight Unit",
+        brand: "Daytona",
+        category: "Electrical",
+        price: 2100000,
+        image: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Racing Brake Disc",
+        brand: "WR3",
+        category: "Brake",
+        price: 1650000,
+        image: "https://images.unsplash.com/photo-1558981359-219d6364c9c8?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Custom Side Cover",
+        brand: "KTC",
+        category: "Body",
+        price: 750000,
+        image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Workshop Tool Set",
+        brand: "KTC",
+        category: "Tools",
+        price: 4200000,
+        image: "https://images.unsplash.com/photo-1581147036324-c17ac41a8b7b?auto=format&fit=crop&w=900&q=80"
+    },
+
+    {
+        name: "Adjustable Footpeg",
+        brand: "RCB",
+        category: "Accessories",
+        price: 650000,
+        image: "https://images.unsplash.com/photo-1558980394-0c7c0d6e5a15?auto=format&fit=crop&w=900&q=80"
+    }
+
+];
+
+
+/* ================= CART ================= */
+
+let cart = [];
+
+
+/* ================= FORMAT PRICE ================= */
+
+function formatPrice(price) {
+
+    return new Intl.NumberFormat("id-ID").format(price);
+
+}
+
+
+/* ================= DISPLAY PRODUCTS ================= */
+
+function renderProducts() {
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const category =
+        document.getElementById("categoryFilter")
+        .value;
+
+    const brand =
+        document.getElementById("brandFilter")
+        .value;
+
+    const list =
+        document.getElementById("productList");
+
+    const filtered = products.filter(product => {
+
+        const matchesSearch =
+            product.name.toLowerCase().includes(search) ||
+            product.brand.toLowerCase().includes(search);
+
+        const matchesCategory =
+            category === "All" ||
+            product.category === category;
+
+        const matchesBrand =
+            brand === "All" ||
+            product.brand === brand;
+
+        return matchesSearch &&
+               matchesCategory &&
+               matchesBrand;
+
+    });
+
+
+    list.innerHTML = "";
+
+    filtered.forEach((product, index) => {
+
+        list.innerHTML += `
+
+            <div class="product">
+
+                <div class="product-image">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="brand">
+                        ${product.brand}
+                    </div>
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <div class="product-category">
+                        ${product.category}
+                    </div>
+
+                    <div class="price">
+                        Rp ${formatPrice(product.price)}
+                    </div>
+
+                    <button onclick="addToCart(${products.indexOf(product)})">
+                        ADD TO CART
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("productTotal").innerText =
+        `${filtered.length} PRODUCTS`;
+
+}
+
+
+/* ================= FILTER CATEGORY ================= */
+
+function filterCategory(category) {
+
+    document.getElementById("categoryFilter").value =
+        category;
+
+    document.getElementById("shop").scrollIntoView({
+        behavior: "smooth"
+    });
+
+    renderProducts();
+
+}
+
+
+/* ================= ADD CART ================= */
+
+function addToCart(index) {
+
+    cart.push(products[index]);
+
+    updateCart();
+
+    document.getElementById("cartPanel")
+        .classList.add("active");
+
+}
+
+
+/* ================= UPDATE CART ================= */
+
+function updateCart() {
+
+    document.getElementById("cartCount")
+        .innerText = cart.length;
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            `<p style="color:#777;">Your cart is empty.</p>`;
+
+    } else {
+
+        cartItems.innerHTML = "";
+
+        cart.forEach((item, index) => {
+
+            cartItems.innerHTML += `
+
+                <div class="cart-item">
+
+                    <h4>
+                        ${item.name}
+                    </h4>
+
+                    <p style="color:#888;">
+                        ${item.brand}
+                    </p>
+
+                    <p>
+                        Rp ${formatPrice(item.price)}
+                    </p>
+
+                    <button
+                        onclick="removeCart(${index})"
+                        style="
+                            margin-top:8px;
+                            background:none;
+                            border:0;
+                            color:#888;
+                            cursor:pointer;
+                        "
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+
+    const total =
+        cart.reduce(
+            (sum, item) => sum + item.price,
+            0
+        );
+
+    document.getElementById("cartTotal")
+        .innerText = formatPrice(total);
+
+}
+
+
+/* ================= REMOVE CART ================= */
+
+function removeCart(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+
+}
+
+
+/* ================= TOGGLE CART ================= */
+
+function toggleCart() {
+
+    document.getElementById("cartPanel")
+        .classList.toggle("active");
+
+}
+
+
+/* ================= CHECKOUT ================= */
+
+function checkout() {
+
+    if (cart.length === 0) {
+
+        alert("Keranjang masih kosong.");
+
+        return;
+
+    }
+
+    alert(
+        "Checkout berhasil dibuat. " +
+        "Sistem pembayaran dapat dihubungkan " +
+        "ke backend/payment gateway."
+    );
+
+}
+
+
+/* ================= INITIALIZE ================= */
+
+renderProducts();
+
+</script>
+
+</body>
+</html>
